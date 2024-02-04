@@ -1,15 +1,13 @@
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
-FROM oven/bun:1 as base
-WORKDIR /usr/src/app
+FROM node:21-alpine
+WORKDIR /app
 
-COPY package.json ./package.json
-COPY bun.lockb ./bun.lockb
+COPY package.json ./
 
-RUN bun install --frozen-lockfile
+RUN npm install
 
 COPY . .
 
-USER bun
 EXPOSE 3000/tcp
-ENTRYPOINT [ "bun", "start" ]
+ENTRYPOINT [ "npm", "run", "start:dev" ]

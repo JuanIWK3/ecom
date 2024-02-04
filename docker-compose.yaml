@@ -2,15 +2,25 @@ version: "3.8"
 
 services:
   postgres:
+    container_name: postgres
     image: postgres
     restart: always
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: password
       POSTGRES_DB: ecom
-
-  api:
-    container_name: api
-    build: .
     ports:
-      - 4000:3000
+      - 5432:5432
+
+  # api:
+  #   container_name: api
+  #   build:
+  #     dockerfile: Dockerfile
+  #     context: .
+  #   volumes:
+  #     - .:/app
+  #   depends_on:
+  #     - postgres
+  #   ports:
+  #     - 4000:3000
+
