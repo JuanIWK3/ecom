@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ecom
+
+  api:
+    container_name: api
+    build: .
+    ports:
+      - 4000:3000
