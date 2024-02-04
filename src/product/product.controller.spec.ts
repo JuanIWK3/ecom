@@ -24,19 +24,19 @@ describe('ProductController', () => {
     expect(await controller.findAll()).toBeInstanceOf(Array);
   });
 
-  it('should return a product', async () => {
-    const products = await controller.findAll();
-    const product = products[0];
-
-    expect(await controller.findOne(product.id)).toBeInstanceOf(Object);
-  });
-
   it('should create a product', async () => {
     const product: CreateProductDto = {
       name: 'Product Test',
     };
 
     expect(await controller.create(product)).toBeInstanceOf(Object);
+  });
+
+  it('should return a product', async () => {
+    const products = await controller.findAll();
+    const product = products[0];
+
+    expect(await controller.findOne(product.id)).toBeInstanceOf(Object);
   });
 
   it('should update a product', async () => {

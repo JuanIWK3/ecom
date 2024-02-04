@@ -11,6 +11,6 @@ datasource db {
 }
 
 model Product {
-  id   String @default(uuid()) @id
+  id   String @id @default(uuid())
   name String
 }
