@@ -20,7 +20,7 @@ describe('Create Product DTO', () => {
 describe('Update Product DTO', () => {
   it('should not update with a name smaller than 3 chars', async () => {
     const updateProduct = {
-      name: 'Pr',
+      name: 'Pa',
     };
 
     const dto = plainToInstance(UpdateProductDto, updateProduct);
