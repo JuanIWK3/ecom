@@ -1,10 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ProductService } from './product.service';
-import { PrismaService } from 'src/infra/db/prisma-service';
+import { PrismaService } from '../infra/db/prisma.service';
 
 describe('ProductService', () => {
   let service: ProductService;
-  let numberOfProducts: number;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -21,7 +20,6 @@ describe('ProductService', () => {
   it('should return all products', async () => {
     const products = await service.findAll();
     expect(products).toBeInstanceOf(Array);
-    numberOfProducts = products.length;
   });
 
   it('should create a product', async () => {

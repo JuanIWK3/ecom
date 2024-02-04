@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { PrismaService } from '../infra/db/prisma.service';
+import { CreateProductDto } from './dto/create-product.dto';
 import { ProductController } from './product.controller';
 import { ProductService } from './product.service';
-import { PrismaService } from 'src/infra/db/prisma-service';
-import { CreateProductDto } from './dto/create-product.dto';
 
 describe('ProductController', () => {
   let controller: ProductController;
@@ -43,7 +43,9 @@ describe('ProductController', () => {
     const products = await controller.findAll();
     const product = products[0];
 
-    expect(await controller.update(product.id, { name: 'Product Test' })).toBeInstanceOf(Object);
+    expect(
+      await controller.update(product.id, { name: 'Product Test' }),
+    ).toBeInstanceOf(Object);
   });
 
   it('should delete a product', async () => {
