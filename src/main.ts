@@ -17,7 +17,7 @@ async function bootstrap() {
 
   await app.listen(4000);
 
-  console.log(`Server running on ${await app.getUrl()}`);
+  console.log(`🚀 Server running on ${await app.getUrl()}`);
 }
 
 bootstrap();
