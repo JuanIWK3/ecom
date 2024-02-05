@@ -5,7 +5,7 @@ import { Product } from './product.entity';
 describe('Create Product DTO', () => {
   it('should not create with a name smaller than 3 chars', async () => {
     const createProduct = {
-      id: "123123123",
+      id: '123123123',
       name: 'Pr',
     };
 

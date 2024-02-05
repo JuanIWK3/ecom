@@ -1,10 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
 
-@Controller("/api")
+@Controller('/api')
 export class AppController {
   constructor() {}
 
-  @Get("/healthcheck")
+  @Get('/healthcheck')
   healthcheck(): string {
     return 'OK';
   }
