@@ -1,12 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '../infrastructure/config/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 
 const userMock = {
   email: 'controller@email.com',
-  hash: 'password',
+  password: 'password',
 };
 
 describe('ProductController', () => {
@@ -46,7 +46,7 @@ describe('ProductController', () => {
   it('should log out a user', async () => {
     const output = await controller.signup({
       email: 'c2@email.com',
-      hash: 'password',
+      password: 'password',
     });
 
     const result = await controller.logout({

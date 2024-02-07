@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { SignUpDTO } from './dto/signup.dto';
-import { SignInDto } from './dto/signin.dto';
-import { PrismaService } from '../prisma/prisma.service';
-import { Tokens } from './types';
+import { SignUpDTO } from '../infrastructure/controller/signup.dto';
+import { SignInDto } from '../infrastructure/controller/signin.dto';
+import { PrismaService } from '../infrastructure/config/prisma.service';
+import { Tokens } from '../domain/model/user.model';
 import { User } from '@prisma/client';
 import { JwtService } from '@nestjs/jwt';
 

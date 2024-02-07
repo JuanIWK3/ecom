@@ -10,8 +10,8 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { SignInDto } from './dto/signin.dto';
-import { SignUpDTO } from './dto/signup.dto';
+import { SignInDto } from '../infrastructure/controller/signin.dto';
+import { SignUpDTO } from '../infrastructure/controller/signup.dto';
 
 @ApiTags('Auth')
 @Controller('/api/auth')

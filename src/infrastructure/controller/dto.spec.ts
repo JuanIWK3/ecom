@@ -1,7 +1,7 @@
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 import { SignUpDTO } from './signup.dto';
-import { SignInDto } from './signin.dto';
+import { SignInDto } from '../../auth/dto/signin.dto';
 
 const validEmail = 'user@email.com';
 const validPassword = 'password';

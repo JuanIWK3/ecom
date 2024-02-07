@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '../infrastructure/config/prisma.service';
 import { AuthService } from './auth.service';
 import { JwtService } from '@nestjs/jwt';
 
@@ -51,13 +51,13 @@ describe('AuthService', () => {
   it('should not login a user with incorrect password', async () => {
     await service.signup(userMock);
     await expect(
-      service.signin({ email: userMock.email, hash: 'wrongPassword' }),
+      service.signin({ email: userMock.email, password: 'wrongPassword' }),
     ).rejects.toThrow('Invalid credentials');
   });
 
   it('should not signin a user that does not exist', async () => {
     await expect(
-      service.signin({ email: 'nonexistentuser', hash: 'password' }),
+      service.signin({ email: 'nonexistentuser', password: 'password' }),
     ).rejects.toThrow('User not found');
   });
 
