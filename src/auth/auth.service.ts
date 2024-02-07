@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { SignUpDTO } from './dto/signup.dto';
 import { SignInDto } from './dto/signin.dto';
 import { PrismaService } from '../prisma/prisma.service';
-import * as bcrypt from 'bcrypt';
 import { Tokens } from './types';
 import { User } from '@prisma/client';
 import { JwtService } from '@nestjs/jwt';
@@ -13,10 +12,6 @@ export class AuthService {
     private prisma: PrismaService,
     private jwtService: JwtService,
   ) {}
-
-  hashData(data: string) {
-    return bcrypt.hash(data, 10);
-  }
 
   async getTokens(userId: string, email: string) {
     const [at, rt] = await Promise.all([
@@ -47,7 +42,7 @@ export class AuthService {
       throw new Error('Email already exists');
     }
 
-    const hashed = await this.hashData(dto.hash);
+    const hashed = await Bun.password.hash(dto.hash);
 
     const createdUser = await this.prisma.user.create({
       data: {
@@ -78,7 +73,7 @@ export class AuthService {
       throw new Error('User not found');
     }
 
-    const match = await bcrypt.compare(dto.hash, user.hash);
+    const match = await Bun.password.verify(dto.hash, user.hash);
 
     if (!match) {
       throw new Error('Invalid credentials');
@@ -121,7 +116,7 @@ export class AuthService {
   }
 
   async updateRefreshToken(userId: string, rt: string) {
-    const rtHashed = await this.hashData(rt);
+    const rtHashed = await Bun.password.hash(rt);
 
     await this.prisma.user.update({
       where: {
