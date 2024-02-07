@@ -24,11 +24,24 @@ export class ProductController {
   }
 
   @Get()
-  findAll(@Query('page') page: number, @Query('perPage') perPage: number) {
+  findAll(
+    @Query('query') query: string,
+    @Query('page') page: number,
+    @Query('perPage') perPage: number,
+  ) {
+    console.log('query', query);
     console.log('page', page);
-    console.log('per page', perPage);
+    console.log('perPage', perPage);
 
-    return this.productService.findAll(+page, +perPage);
+    if (perPage === undefined) {
+      perPage = 10;
+    }
+
+    if (page === undefined) {
+      page = 1;
+    }
+
+    return this.productService.findAll(query, +page, +perPage);
   }
 
   @Get(':id')

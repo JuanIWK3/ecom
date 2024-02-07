@@ -5,7 +5,13 @@ meta {
 }
 
 get {
-  url: http://localhost:8080/api/products
+  url: http://localhost:6969/api/products?page=1&perPage=10&query=teste
   body: none
   auth: none
+}
+
+query {
+  page: 1
+  perPage: 10
+  query: teste
 }

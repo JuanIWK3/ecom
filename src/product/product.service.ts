@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class ProductService {
@@ -13,10 +13,32 @@ export class ProductService {
     });
   }
 
-  async findAll(page: number, perPage: number) {
+  async findAll(query: string, page: number, perPage: number) {
+    console.log(query, page, perPage);
+
+    if (query === undefined) {
+      query = '';
+    }
+
     return await this.prisma.product.findMany({
-      skip: (page - 1) * perPage,
       take: perPage,
+      skip: (page - 1) * perPage,
+      where: {
+        OR: [
+          {
+            name: {
+              contains: query,
+              mode: 'insensitive',
+            },
+          },
+          {
+            description: {
+              contains: query,
+              mode: 'insensitive',
+            },
+          },
+        ],
+      },
     });
   }
 
