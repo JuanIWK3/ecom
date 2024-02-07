@@ -9,5 +9,5 @@ export class SignInDto extends PartialType(SignUpDTO) {
 
   @IsString()
   @MinLength(8)
-  hash: string;
+  password: string;
 }

@@ -10,5 +10,5 @@ export class SignUpDTO {
   @ApiProperty()
   @IsString()
   @MinLength(8)
-  hash: string;
+  password: string;
 }

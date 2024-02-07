@@ -12,7 +12,7 @@ describe('SignUp DTO', () => {
   it('should not signup a user with an invalid email ', async () => {
     const newUser: SignUpDTO = {
       email: invalidEmail,
-      hash: validPassword,
+      password: validPassword,
     };
 
     const dto = plainToInstance(SignUpDTO, newUser);
@@ -25,7 +25,7 @@ describe('SignUp DTO', () => {
   it('should not signup a user with an invalid password', async () => {
     const newUser: SignUpDTO = {
       email: validEmail,
-      hash: invalidPassword,
+      password: invalidPassword,
     };
 
     const dto = plainToInstance(SignUpDTO, newUser);
@@ -40,7 +40,7 @@ describe('SignIn DTO', () => {
   it('should not signin a user with an invalid email ', async () => {
     const user: SignInDto = {
       email: invalidEmail,
-      hash: validPassword,
+      password: validPassword,
     };
 
     const dto = plainToInstance(SignInDto, user);
@@ -53,7 +53,7 @@ describe('SignIn DTO', () => {
   it('should not signin a user with an invalid password', async () => {
     const user: SignInDto = {
       email: validEmail,
-      hash: invalidPassword,
+      password: invalidPassword,
     };
 
     const dto = plainToInstance(SignInDto, user);

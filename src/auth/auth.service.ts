@@ -42,12 +42,12 @@ export class AuthService {
       throw new Error('Email already exists');
     }
 
-    const hashed = await Bun.password.hash(dto.hash);
+    const hashed = await Bun.password.hash(dto.password);
 
     const createdUser = await this.prisma.user.create({
       data: {
         email: dto.email,
-        hash: hashed,
+        password: hashed,
       },
     });
 
@@ -73,7 +73,7 @@ export class AuthService {
       throw new Error('User not found');
     }
 
-    const match = await Bun.password.verify(dto.hash, user.hash);
+    const match = await Bun.password.verify(dto.password, user.password);
 
     if (!match) {
       throw new Error('Invalid credentials');

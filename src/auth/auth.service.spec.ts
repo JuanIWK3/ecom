@@ -5,7 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 
 const userMock = {
   email: 'user@email.com',
-  hash: 'password',
+  password: 'password',
 };
 
 describe('AuthService', () => {
